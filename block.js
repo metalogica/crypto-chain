@@ -33,6 +33,4 @@ const block1 = new Block({
   data: 'foo-data'
 });
 
-console.log('Block 1:\n', block1);
-
 module.exports = Block;
