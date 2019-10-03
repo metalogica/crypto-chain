@@ -1,30 +1,41 @@
 const Block= require('./block');
-const { GENESIS_DATA } = require('./config');
+const { GENESIS_DATA, MINE_RATE } = require('./config');
 const cryptoHash = require('./crypto-hash');
 
 describe('Block', () => {
-  const timestamp = '29-09-2019';
+  const timestamp = 2000;
   const lastHash = 'foo-lastHash';
   const hash = 'foo-hash';
   const data = ['foo-data', 'foo-bar'];
-  const block = new Block({ timestamp, lastHash, hash, data });
+  const nonce = 1;
+  const difficulty = 1;
+  const block = new Block({ timestamp, lastHash, hash, data, nonce, difficulty });
 
-  it('has a timestamp.', () => {
-    expect(block.timestamp).toEqual(timestamp);
-  });
+  describe('it has core properties', () => {
+    it('has a timestamp.', () => {
+      expect(block.timestamp).toEqual(timestamp);
+    });
 
-  it('has a lastHash.', () => {
-    expect(block.lastHash).toEqual(lastHash);
-  });
+    it('has a lastHash.', () => {
+      expect(block.lastHash).toEqual(lastHash);
+    });
 
-  it('hash a hash.', () => {
-    expect(block.hash).toEqual(hash);
-  });
+    it('hash a hash.', () => {
+      expect(block.hash).toEqual(hash);
+    });
 
+    it('has a data', () => {
+      expect(block.data).toEqual(data);
+    });
 
-  it('has a block.', () => {
-    expect(block.data).toEqual(data);
-  });
+    it('has a nonce.', () => {
+      expect(block.nonce).toEqual(nonce);
+    });
+
+    it('has a difficulty.', () => {
+      expect(block.difficulty).toEqual(difficulty);
+    });
+  })
 
   describe('genesis()', () => {
     const genesisBlock = Block.genesis();
@@ -61,7 +72,46 @@ describe('Block', () => {
 
     it('creates a SHA-256 `hash` based on the proper inputs', () => {
       expect(minedBlock.hash)
-        .toEqual(cryptoHash(minedBlock.timestamp, lastBlock.hash, data))
+        .toEqual(
+          cryptoHash(
+            minedBlock.timestamp,
+            minedBlock.nonce,
+            minedBlock.difficulty,
+            lastBlock.hash,
+            data,
+          )
+        )
     })
+
+    it('sets a `hash` that matches the difficulty criteria', () => {
+      expect(minedBlock.hash.substring(0, minedBlock.difficulty))
+        .toEqual('0'.repeat(minedBlock.difficulty));
+    });
+
+    it('adjusts the difficulty', () => {
+      const possibleResults = [lastBlock.difficulty + 1, lastBlock.difficulty - 1];
+
+      expect(possibleResults.includes(minedBlock.difficulty)).toBe(true);
+    });
+  });
+
+  describe('adjustDifficulty()', () => {
+    it('raises difficulty for a quickly mined block', () => {
+      expect(Block.adjustDifficulty({
+        originalBlock: block, timestamp: block.timestamp + MINE_RATE + 100
+      })).toEqual(block.difficulty - 1);
+    });
+
+    it('lowers difficulty for a slowly mined block', () => {
+      expect(Block.adjustDifficulty({
+        originalBlock: block, timestamp: block.timestamp + MINE_RATE - 100
+      })).toEqual(block.difficulty + 1);
+    });
+
+    it('has a lower limit of 1', () => {
+      block.difficulty = -1;
+
+      expect(Block.adjustDifficulty({ originalBlock: block})).toEqual(1);
+    });
   });
 });
