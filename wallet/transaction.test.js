@@ -2,14 +2,14 @@ const Transaction = require('./transaction');
 const Wallet = require('./index');
 
 describe('Transaction', () => {
-  let transaction, senderWallet;
+  let transaction, senderWallet, receipientValue, amount;
 
   beforeEach(() => {
-    senderWallet = new Wallet();
+    senderWallet = new Wallet;
     recipient = 'recipient-public-key';
     amount = 50;
 
-    transaction = newTransaction({ senderWallet, recipient, amount });
+    transaction = new Transaction({ senderWallet, recipient, amount });
   });
 
   it('has an `id`', () => {
@@ -18,12 +18,12 @@ describe('Transaction', () => {
 
   describe('outputMap', () => {
     it('has an `outputMap`', () => {
-      expect(transaction).toHaveProperty('outputMap')
+      expect(transaction).toHaveProperty('outputMap');
     });
 
     it('outputs the amount to the recipient', () => {
-      expect(transaction.outputMap[recipient]).toEqual(amount);
-    })
+      expect(transaction.outputMap[recipient]).toEqual(amount)
+    });
 
     it('outputs the remaining balance for the `senderWallet`', () => {
       expect(transaction.outputMap[senderWallet.publicKey])
