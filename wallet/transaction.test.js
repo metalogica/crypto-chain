@@ -1,6 +1,6 @@
 const Transaction = require('./transaction');
 const Wallet = require('./index');
-const { verifySignature } = require('../util')
+const { verifySignature } = require('../util');
 
 describe('Transaction', () => {
   let transaction, senderWallet, receipientValue, amount;
@@ -64,7 +64,7 @@ describe('Transaction', () => {
     let errorMock;
 
     beforeEach(() => {
-      errorMock =jest.fn();
+      errorMock = jest.fn();
 
       global.console.error = errorMock;
     });
@@ -101,7 +101,7 @@ describe('Transaction', () => {
 
     beforeEach(() => {
       originalSignature = transaction.input.signature;
-      originalSenderOutput = transaction.output[senderWallet.publicKey];
+      originalSenderOutput = transaction.outputMap[senderWallet.publicKey];
       nextRecipient = 'next-recipient';
       nextAmount = 50;
 
@@ -109,6 +109,7 @@ describe('Transaction', () => {
     })
 
     it('outputs the amount to the next recipient', () => {
+      console.dir(transaction);
       expect(transaction.outputMap[nextRecipient]).toEqual(nextAmount);
     });
 

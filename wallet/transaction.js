@@ -4,7 +4,7 @@ const { verifySignature } = require('../util');
 class Transaction {
   constructor({ senderWallet, recipient, amount }) {
     this.id = uuid();
-    this.outputMap = this.createOutputMap({ senderWallet, recipient, amount});
+    this.outputMap = this.createOutputMap({ senderWallet, recipient, amount });
     this.input = this.createInput({ senderWallet, outputMap: this.outputMap });
   }
 
@@ -24,6 +24,15 @@ class Transaction {
       address: senderWallet.publicKey,
       signature: senderWallet.sign(outputMap)
     }
+  }
+
+  update({ senderWallet, recipient, amount }) {
+    this.outputMap[recipient] = amount;
+
+    this.outputMap[senderWallet.publicKey] =
+      this.outputMap[senderWallet.publicKey] -= amount;
+
+    this.input = this.createInput({ senderWallet, outputMap: this.outputMap });
   }
 
   static validTransaction(transaction) {
