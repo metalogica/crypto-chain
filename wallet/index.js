@@ -13,7 +13,6 @@ class Wallet {
     return this.keyPair.sign(cryptoHash(data));
   }
 
-
   createTransaction({amount, recipient}) {
     if (amount > this.balance) {
       throw new Error('Amount exceeds balance');
