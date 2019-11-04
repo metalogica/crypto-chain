@@ -11,7 +11,7 @@ class Transaction {
   createOutputMap({ senderWallet, recipient, amount }) {
     const outputMap = {};
 
-    outputMap[recipient] = amount;
+    outputMap[recipient] = Number(amount);
     outputMap[senderWallet.publicKey] = senderWallet.balance - amount;
 
     return outputMap;
@@ -34,7 +34,7 @@ class Transaction {
     if (!this.outputMap[recipient]) {
       this.outputMap[recipient] = amount;
     } else {
-      this.outputMap[recipient] = this.outputMap[recipient] + amount;
+      this.outputMap[recipient] = this.outputMap[recipient] + Number(amount);
     }
 
     this.outputMap[senderWallet.publicKey] =
