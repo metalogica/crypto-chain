@@ -62,7 +62,7 @@ class PubSub {
 
   broadcastTransaction(transaction) {
     this.publish({
-      channel: CHANNELSW.transaction,
+      channel: CHANNELS.TRANSACTION,
       message: JSON.stringify(transaction)
     })
   }
