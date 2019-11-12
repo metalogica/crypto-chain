@@ -21,8 +21,8 @@ class TransactionPool {
 
   validTransactions() {
     return Object.values(this.transactionMap).filter((transaction) => {
-      Transaction.validTransaction(transaction);
-    })
+      return Transaction.validTransaction(transaction);
+    });
   }
 }
 

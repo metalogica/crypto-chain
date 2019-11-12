@@ -49,13 +49,14 @@ describe('TransactionPool', () => {
           amount: 30
         });
 
-        if (1%3===0) {
+        if (i%3===0) {
           transaction.input.amount = 999999;
         } else if (i%3===1) {
           transaction.input.signature = new Wallet().sign('foo');
         } else {
           validTransactions.push(transaction);
         }
+
 
         transactionPool.setTransaction(transaction);
       }
