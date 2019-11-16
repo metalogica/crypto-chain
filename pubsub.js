@@ -48,7 +48,7 @@ class PubSub {
     this.publish({
       channel: CHANNELS.BLOCKCHAIN,
       message: JSON.stringify(this.blockchain.chain)
-    })
+    });
   }
 }
 
