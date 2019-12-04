@@ -79,7 +79,7 @@ describe('Block', () => {
             minedBlock.nonce,
             minedBlock.difficulty,
             lastBlock.hash,
-            data,
+            data
           )
         )
     })
