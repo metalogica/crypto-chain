@@ -50,7 +50,7 @@ describe('Wallet', () => {
       });
     });
 
-    describe('and the amount is valid', () => {
+    describe('and the amount is absolutely valid', () => {
       let transaction, amount, recipient;
 
       beforeEach(() => {
