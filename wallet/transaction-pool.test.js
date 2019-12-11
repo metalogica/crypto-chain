@@ -34,7 +34,7 @@ describe('TransactionPool', () => {
     });
   });
 
-  describe('validtransactions()', () => {
+  describe('validTransactions()', () => {
     let validTransactions, errorMock;
 
     beforeEach(() => {
@@ -57,7 +57,6 @@ describe('TransactionPool', () => {
           validTransactions.push(transaction);
         }
 
-
         transactionPool.setTransaction(transaction);
       }
     });
@@ -71,4 +70,6 @@ describe('TransactionPool', () => {
       expect(errorMock).toHaveBeenCalled();
     });
   });
+
+
 });
