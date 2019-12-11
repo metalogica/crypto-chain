@@ -29,13 +29,17 @@ class PubSub {
   }
 
   handleMessage(channel, message) {
-    console.log(`Message received. Channel: ${channel}. Messge: ${message}.`)
+    console.log(`Message received. Channel: ${channel}. Message: ${message}.`)
 
     const parsedMessage = JSON.parse(message);
 
     switch(channel) {
       case CHANNELS.BLOCKCHAIN:
-        this.blockchain.replaceChain(parsedMessage);
+        this.blockchain.replaceChain(parsedMessage, () => {
+          this.transactionPool.clearBlockchainTransactions({
+            chain: parsedMessage
+          });
+        });
         break;
       case CHANNELS.TRANSACTION:
         this.transactionPool.setTransaction(parsedMessage);
