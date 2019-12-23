@@ -12,7 +12,7 @@ describe('cryptoHash()', () => {
       .toEqual(cryptoHash('three', 'one', 'two'));
   });
 
-  it('produces a unique hash when the properties have changed on an input', () => {
+  it('produces a unique hash when the properties have changed on an input.', () => {
     const foo = {};
     const originalHash = cryptoHash(foo);
     foo['a'] = 'a';
