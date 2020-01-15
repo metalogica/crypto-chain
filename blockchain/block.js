@@ -44,7 +44,7 @@ class Block {
 }
 
 const block1 = new Block({
-  timestamp: '29/09/2019',
+  timestamp: '29/10/2019',
   lastHash: 'foo-lastHash',
   hash: 'foo-hash',
   data: 'foo-data'
