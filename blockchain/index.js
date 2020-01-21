@@ -1,5 +1,6 @@
 const Block = require('./block');
 const { cryptoHash } = require('../util');
+const { REWARD_INPUT, MINING_REWARD } = require('../config');
 
 class Blockchain {
   constructor() {
@@ -29,6 +30,26 @@ class Blockchain {
     if (onSuccess) onSuccess();
     console.log('replacing chain with ', chain);
     this.chain = chain;
+  }
+
+  validTransactionData({ chain }) {
+    for (let i=1; i<chain.length; i++) {
+      const block = chain[i];
+      let rewardTransactionData = 0;
+
+      for (let transaction of block.data) {
+        if (transaction.input.address === REWARD_INPUT.address) {
+          rewardTransactionData += 1;
+
+          if (rewardTransactionData > 1) {
+            console.error('Miner reward exceeds limit');
+            return false;
+          }
+        }
+      }
+    }
+
+    return true;
   }
 
   static isValid(chain) {
