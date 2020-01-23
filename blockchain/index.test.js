@@ -223,7 +223,7 @@ describe('Blockchain()', () => {
             address: wallet.publicKey,
             signature: wallet.sign(evilOutputMap)
           },
-          output: evilOutputMap
+          outputMap: evilOutputMap
         };
 
         newChain.addBlock({ data: [evilTransaction, rewardTransaction] });
