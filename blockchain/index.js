@@ -18,7 +18,7 @@ class Blockchain {
     this.chain.push(newBlock);
   }
 
-  replaceChain(chain, onSuccess)  {
+  replaceChain(chain, validateTransactions, onSuccess)  {
     if (chain.length <= this.chain.length) {
       console.error('The incoming chain must be longer');
       return;
@@ -26,6 +26,14 @@ class Blockchain {
 
     if (!Blockchain.isValid(chain)) {
       console.error('The incoming chain must be valid!');
+      return;
+    }
+
+    // only validate tx if specifically said to do so; tests on ll. 125-8 on
+    // blockchain test.js use string values for data. This would break the code
+    // if the validateTransaction flag were not used.
+    if (validateTransactions && !this.validTransactionData({ chain })) {
+      console.error('The incoming chain has invalid data.')
       return;
     }
 
