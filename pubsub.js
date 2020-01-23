@@ -2,7 +2,8 @@ const redis = require('redis');
 
 const CHANNELS = {
   TEST: 'TEST',
-  BLOCKCHAIN: 'BLOCKCHAIN'
+  BLOCKCHAIN: 'BLOCKCHAIN',
+  TRANSACTION: 'TRANSACTION'
 };
 
 class PubSub {
@@ -27,12 +28,26 @@ class PubSub {
   }
 
   handleMessage(channel, message) {
-    console.log(`Message received... Channel: ${channel}. Messge: ${message}.`)
+    console.log(`Message received... Channel: ${channel}. Message: ${message}.`)
 
     const parsedMessage = JSON.parse(message);
 
-    if (channel === CHANNELS.BLOCKCHAIN) {
-      this.blockchain.replaceChain(parsedMessage);
+    // Backup code for pubsub subscription; can be removed any time.
+    // if (channel === CHANNELS.BLOCKCHAIN) {
+    //   this.blockchain.replaceChain(parsedMessage);
+    // }
+
+    switch(channel) {
+      case CHANNELS.blockchain:
+        this.blockchain.replaceChain(parsedMessage, () => {
+          this.transactionPool.clearBlockchainTransactions({
+            chain: parsedMessage
+          });
+        });
+      case CHANNELS.subscription:
+        this.transactionPool.setTransaction(parsedMessage);
+      default:
+        return;
     }
   }
 
