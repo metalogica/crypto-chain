@@ -22,6 +22,8 @@ const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`;
 setTimeout(() => {pubsub.broadcastChain()}, 1000);
 
 // Middleware
+// create no cors policy for backend
+// https://www.positronx.io/express-cors-tutorial/
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'client/dist')));
 
