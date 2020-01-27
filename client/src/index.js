@@ -1,6 +1,12 @@
 console.log('Hello, World!')
 
+// Import node modules
 import React from 'react';
 import { render } from 'react-dom';
 
-render(<div>Cryptochain in React! Hello! Wow! It Works!</div>, document.getElementById('root'));
+// Import compnents
+import App from './components/App';
+
+render(<App />,
+  document.getElementById('root')
+);
