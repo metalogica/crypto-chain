@@ -13,6 +13,6 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{"react":"ccIB","object-assign":"W2ED","scheduler":"dH6z"}],"x9tB":[function(require,module,exports) {
 "use strict";function _(){if("undefined"!=typeof __REACT_DEVTOOLS_GLOBAL_HOOK__&&"function"==typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE){0;try{__REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(_)}catch(O){console.error(O)}}}_(),module.exports=require("./cjs/react-dom.production.min.js");
 },{"./cjs/react-dom.production.min.js":"MtQn"}],"Focm":[function(require,module,exports) {
-"use strict";var e=t(require("react")),r=require("react-dom");function t(e){return e&&e.__esModule?e:{default:e}}console.log("Hello, World!"),(0,r.render)(e.default.createElement("div",null,"Cryptochain in React!"),document.getElementById("root"));
+"use strict";var e=t(require("react")),r=require("react-dom");function t(e){return e&&e.__esModule?e:{default:e}}console.log("Hello, World!"),(0,r.render)(e.default.createElement("div",null,"Cryptochain in React! Hello!"),document.getElementById("root"));
 },{"react":"ccIB","react-dom":"x9tB"}]},{},["Focm"], null)
-//# sourceMappingURL=/src.8950954f.js.map
+//# sourceMappingURL=/src.088c479f.js.map

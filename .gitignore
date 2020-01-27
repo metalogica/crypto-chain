@@ -1,2 +1,5 @@
 node_modules
 node_modules/*
+.cache
+client/dist
+package-lock.json

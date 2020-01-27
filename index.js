@@ -23,7 +23,7 @@ setTimeout(() => {pubsub.broadcastChain()}, 1000);
 
 // Middleware
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'client')));
+app.use(express.static(path.join(__dirname, 'client/dist')));
 
 app.get('/api/blocks', (req, res) => {
   res.json(blockchain.chain);
@@ -111,7 +111,7 @@ app.get('/api/wallet-info', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/index.html'));
+  res.sendFile(path.join(__dirname, 'client/dist/index.html'));
 });
 
 let PEER_PORT;
