@@ -7,7 +7,7 @@ const STARTING_BALANCE = 1000;
 const GENESIS_DATA = {
   timestamp: 1,
   lastHash: '------',
-  hash: 'hash-one',
+  hash: 'GENESIS-HASH',
   data: [],
   difficulty: INITIAL_DIFFICULTY
 };
