@@ -5,19 +5,18 @@ const Transaction = ({ transaction }) => {
   const recipients = Object.keys(outputMap);
 
   return (
-    (input &&) {
+    <div className='Transaction'>
       <div>
-        <div> From: {`${input.address.substring(0, 20)}...`} | Balance: {input.amount}</div>
+        From: {`${input.address.substring(0, 20)}...`} | Balance: {input.amount}
+      </div>
         {
-          // implicit return of JSX used
           recipients.map(recipient => (
-            <div key={recipient}>
-              To: {`${recipient.substring(0, 20)}...`} | Sent: {outputMap[recipient]}
-            </div>
+          <div key={recipient}>
+            To: {`${recipient.substring(0, 20)}...`} | Sent: {outputMap[recipient]}
+          </div>
           ))
         }
-      </div>
-    }
+    </div>
   )
 }
 

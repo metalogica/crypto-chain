@@ -12,7 +12,7 @@ const GENESIS_DATA = {
   difficulty: INITIAL_DIFFICULTY
 };
 
-const REWARD_INPUT = { adress: '*authorized-reward*' };
+const REWARD_INPUT = { address: '*authorized-reward*' };
 
 const MINING_REWARD = 50;
 
