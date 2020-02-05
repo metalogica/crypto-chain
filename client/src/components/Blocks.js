@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Block from './block';
 
 class Blocks extends Component {
@@ -15,6 +16,7 @@ class Blocks extends Component {
     return(
       <div>
         <h3>Blocks</h3>
+        <Link to='/'>Home</Link>
         {
           this.state.blocks.map(block => {
             return(

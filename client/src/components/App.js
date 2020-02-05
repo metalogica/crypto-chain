@@ -1,5 +1,6 @@
 //  default export   { secondary exports }
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
 class App extends Component {
@@ -21,6 +22,10 @@ class App extends Component {
         <img className='logo' src={logo}></img>
         <br/>
         <div>Welcome to the Blockchain...</div>
+        <br/>
+          <div>
+            <Link to='/blocks'>Blocks</Link>
+          </div>
         <br/>
         <div className='WalletInfo'>
           <div>Address: {address}</div>

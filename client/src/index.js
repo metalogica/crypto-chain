@@ -12,7 +12,7 @@ import App from './components/App';
 render(
   <Router history={history}>
     <Switch>
-      <Route path='/'component={App} />
+      <Route exact path='/'component={App} />
       <Route path='/blocks'component={Blocks} />
     </Switch>
   </Router>,
