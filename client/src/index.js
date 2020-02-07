@@ -3,7 +3,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Switch, Route } from 'react-router-dom';
 import history from './history';
-import Blocks from './components/blocks';
+import Blocks from './components/Blocks';
+import ConductTransaction from './components/ConductTransaction';
 import './index.css';
 
 // Import compnents
@@ -14,6 +15,7 @@ render(
     <Switch>
       <Route exact path='/'component={App} />
       <Route path='/blocks'component={Blocks} />
+      <Route path='/conduct-transaction'component={ConductTransaction} />
     </Switch>
   </Router>,
   document.getElementById('root')
