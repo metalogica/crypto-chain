@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { FormGroup, FormControl } from 'react-bootstrap';
+import { FormGroup, FormControl, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import history from '../history';
 
 class ConductTransaction extends Component {
   state = {
@@ -16,11 +17,28 @@ class ConductTransaction extends Component {
     this.setState({ amount: Number(event.target.value) });
   }
 
-  render() {
-    console.log('conduct tx state', this.state)
+  conductTransaction = () => {
+    const { recipient, amount } = this.state;
 
+    fetch('http://0.0.0.0:3000/api/transact', {
+      method: 'POST',
+      headers:{ 'Content-Type': 'application/json' },
+      body: JSON.stringify({ recipient, amount })
+    }).then(response => response.json())
+      .then(json => {
+        //    console.error   data
+        alert(json.message || json.type);
+        // redirect to tx pool page
+        history.push('/transaction-pool')
+      });
+  }
+
+  render() {
     return (
-      <div>
+      <div className='ConductTransaction'>
+        <div><Link to='/'>Home</Link></div>
+        <br/>
+        <h1>Conduct A Transaction</h1>
         <FormGroup>
           <FormControl
             input='text'
@@ -39,6 +57,12 @@ class ConductTransaction extends Component {
           >
           </FormControl>
         </FormGroup>
+        <Button
+          bsStyle='danger'
+          onClick={this.conductTransaction}
+        >
+          Submit
+        </Button>
       </div>
     )
   }
