@@ -17,7 +17,7 @@ const pubsub = new PubSub({ blockchain, transactionPool });
 const transactionMiner = new TransactionMiner({ blockchain, transactionPool, wallet, pubsub });
 
 const DEFAULT_PORT = 3000;
-const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`;
+const ROOT_NODE_ADDRESS = `http://0.0.0.0:${DEFAULT_PORT}`;
 
 setTimeout(() => {pubsub.broadcastChain()}, 1000);
 
