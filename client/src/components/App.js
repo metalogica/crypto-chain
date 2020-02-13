@@ -21,7 +21,7 @@ class App extends Component {
       <div className='App'>
         <img className='logo' src={logo}></img>
         <br/>
-        <div>Welcome to the Blockchain...</div>
+        <div>Welcome to the Blockchain!</div>
         <br/>
           <div><Link to='/blocks'>Blocks</Link></div>
           <div><Link to='/conduct-transaction'>Conduct A Transaction</Link></div>
