@@ -14,8 +14,8 @@ class PubSub {
     this.transactionPool = transactionPool;
 
     console.log('booting up redis...');
-    this.publisher = redis.createClient(redisUrl);
-    this.subscriber = redis.createClient(redisUrl);
+    this.publisher = redis.createClient(process.env.REDIS_URL);
+    this.subscriber = redis.createClient(process.env.REDIS_URL);
     console.log('redis successfully boot up');
 
     this.subscribeToChannels();
