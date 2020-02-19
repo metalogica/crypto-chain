@@ -25,8 +25,8 @@ console.log('isDevelopment?', isDevelopment, 'redis url', REDIS_URL, 'default po
 const blockchain = new Blockchain();
 const wallet = new Wallet();
 const transactionPool = new TransactionPool();
-const pubsub = new PubSub({ blockchain, transactionPool, redisUrl: REDIS_URL });
-const transactionMiner = new TransactionMiner({ blockchain, transactionPool, wallet, pubsub });
+// const pubsub = new PubSub({ blockchain, transactionPool, redisUrl: REDIS_URL });
+// const transactionMiner = new TransactionMiner({ blockchain, transactionPool, wallet, pubsub });
 const app = express();
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'client/dist')));
