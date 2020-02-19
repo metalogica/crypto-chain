@@ -33,11 +33,6 @@ class PubSub {
 
     const parsedMessage = JSON.parse(message);
 
-    // Backup code for pubsub subscription; can be removed any time.
-    // if (channel === CHANNELS.BLOCKCHAIN) {
-    //   this.blockchain.replaceChain(parsedMessage);
-    // }
-
     switch(channel) {
       case CHANNELS.blockchain:
         this.blockchain.replaceChain(parsedMessage, () => {
@@ -67,8 +62,5 @@ class PubSub {
     });
   }
 }
-
-// const testPubSub = new PubSub();
-// setTimeout(() => {testPubSub.publisher.publish(CHANNELS.TEST, 'foo')}, 1000);
 
 module.exports = PubSub;
