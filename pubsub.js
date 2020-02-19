@@ -8,11 +8,15 @@ const CHANNELS = {
 
 class PubSub {
   constructor({ blockchain, transactionPool, redisUrl }) {
+    console.log('redis url', redisUrl);
+
     this.blockchain = blockchain;
     this.transactionPool = transactionPool;
 
+    console.log('booting up redis...');
     this.publisher = redis.createClient(redisUrl);
     this.subscriber = redis.createClient(redisUrl);
+    console.log('redis successfully boot up');
 
     this.subscribeToChannels();
 
