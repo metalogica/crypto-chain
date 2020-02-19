@@ -11,8 +11,8 @@ class PubSub {
     this.blockchain = blockchain;
     this.transactionPool = transactionPool;
 
-    this.publisher = redis.createClient(redisUrl);
-    this.subscriber = redis.createClient(redisUrl);
+    this.publisher = redis.createClient('redis://h:p136dc6cc19cadae3d1cf5f81052b22701e34c29341aef040091d9a3c956916cd@ec2-23-22-216-104.compute-1.amazonaws.com:25629');
+    this.subscriber = redis.createClient('redis://h:p136dc6cc19cadae3d1cf5f81052b22701e34c29341aef040091d9a3c956916cd@ec2-23-22-216-104.compute-1.amazonaws.com:25629');
 
     this.subscribeToChannels();
 
