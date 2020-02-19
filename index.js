@@ -178,4 +178,4 @@ app.listen(PORT, () => {
   }
 });
 
-setTimeout(() => {pubsub.broadcastChain()}, 1000);
+//setTimeout(() => {pubsub.broadcastChain()}, 1000);
