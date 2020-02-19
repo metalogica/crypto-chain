@@ -19,12 +19,13 @@ const REDIS_URL = isDevelopment ?
   'redis://h:p136dc6cc19cadae3d1cf5f81052b22701e34c29341aef040091d9a3c956916cd@ec2-23-22-216-104.compute-1.amazonaws.com:25629'
 const DEFAULT_PORT = 3000;
 const ROOT_NODE_ADDRESS = `http://0.0.0.0:${DEFAULT_PORT}`;
-console.log('redis url', REDIS_URL, 'default port', DEFAULT_PORT, 'root node', ROOT_NODE_ADDRESS);
+console.log('isDevelopment?', isDevelopment, 'redis url', REDIS_URL, 'default port', DEFAULT_PORT, 'root node', ROOT_NODE_ADDRESS);
 
 // Component setup
 const blockchain = new Blockchain();
 const wallet = new Wallet();
 const transactionPool = new TransactionPool();
+console.log('booting pubsub from index.js ENV: ', 'blockchain', blockchain, 'transactionPool: ', transactionPool, 'redis url', REDIS_URL)
 const pubsub = new PubSub({ blockchain, transactionPool, redisUrl: REDIS_URL });
 const transactionMiner = new TransactionMiner({ blockchain, transactionPool, wallet, pubsub });
 const app = express();
