@@ -31,6 +31,7 @@ const transactionMiner = new TransactionMiner({ blockchain, transactionPool, wal
 const app = express();
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'client/dist')));
+console.log('middleware setup successfully');
 
 // Routes
 app.get('/api/blocks', (req, res) => {
