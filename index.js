@@ -2,7 +2,7 @@
 const express = require('express');
 const request = require('request');
 const bodyParser = require('body-parser');
-const path =require('path');
+const path = require('path');
 
 // Components
 const Blockchain = require('./blockchain');
@@ -25,13 +25,11 @@ console.log('isDevelopment?', isDevelopment, 'redis url', REDIS_URL, 'default po
 const blockchain = new Blockchain();
 const wallet = new Wallet();
 const transactionPool = new TransactionPool();
-console.log('booting pubsub from index.js ENV: ', 'blockchain', blockchain, 'transactionPool: ', transactionPool, 'redis url', REDIS_URL)
 const pubsub = new PubSub({ blockchain, transactionPool, redisUrl: REDIS_URL });
 const transactionMiner = new TransactionMiner({ blockchain, transactionPool, wallet, pubsub });
 const app = express();
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'client/dist')));
-console.log('middleware setup successfully');
 
 // Routes
 app.get('/api/blocks', (req, res) => {
@@ -165,19 +163,19 @@ const syncWithRootState = () => {
   });
 };
 
-let PEER_PORT;
-if (process.env.GENERATE_PEER_PORT === 'true') {
-  PEER_PORT = DEFAULT_PORT + Math.ceil(Math.random() * 1000);
-}
+// let PEER_PORT;
+// if (process.env.GENERATE_PEER_PORT === 'true') {
+//   PEER_PORT = DEFAULT_PORT + Math.ceil(Math.random() * 1000);
+// }
 
-const PORT = process.env.PORT || PEER_PORT || DEFAULT_PORT;
-console.log('actualised port', PORT);
-app.listen(PORT, () => {
-  console.log(`Listening at localhost... ${PORT}`);
+// const PORT = process.env.PORT || PEER_PORT || DEFAULT_PORT;
+// console.log('actualised port', PORT);
+// app.listen(PORT, () => {
+//   console.log(`Listening at port: ${PORT}`);
 
-  if (PORT !== DEFAULT_PORT) {
-    //syncWithRootState();
-  }
-});
+//   if (PORT !== DEFAULT_PORT) {
+//     syncWithRootState();
+//   }
+// });
 
-//setTimeout(() => {pubsub.broadcastChain()}, 1000);
+// setTimeout(() => {pubsub.broadcastChain()}, 1000);
